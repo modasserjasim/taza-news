@@ -16,6 +16,24 @@ const displayCategories = async () => {
         <button onclick="loadCategoriesNews('${category.category_id}')" class="category-btn text-secondary">${category.category_name}</button>`;
         categoriesMenuContainer.appendChild(newButton);
     });
+
+    // Get all buttons with class="btn" inside the container to active the button
+    var btns = categoriesMenuContainer.getElementsByClassName("category-btn");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("category-btn-active");
+
+            // set the active class on menu
+            if (current.length > 0) {
+                current[0].className = current[0].className.replace(" category-btn-active", "");
+            }
+
+            // Add the active class to the current/clicked button
+            this.className += " category-btn-active";
+        });
+    }
 }
 displayCategories();
 
@@ -29,10 +47,22 @@ const loadCategoriesNews = async (category_id) => {
 
 const displayCategoriesNews = newsCard => {
     console.log(newsCard);
+
+    //items found
+    const itemsFound = document.getElementById('items-found');
+    if(newsCard.length > 0){
+        itemsFound.classList.remove('d-none')
+        itemsFound.innerText = `${newsCard.length} items found for this category`;
+    } else{
+        itemsFound.classList.remove('d-none')
+        itemsFound.innerText = `There is no item found in this category`;
+    }
+
+    //set news cards on the container
     const categoriesContainer = document.getElementById('categories-container');
     categoriesContainer.innerHTML = '';
     newsCard.forEach(news => {
-        console.log(news);
+        // console.log(news);
         const createCard = document.createElement('div');
         createCard.innerHTML = `
             <div class="card shadow-sm border-0 rounded-4 mb-4">
@@ -53,10 +83,9 @@ const displayCategoriesNews = newsCard => {
                                     <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date}</p>
                                 </div>
                             </div>
-                            <p class="card-text text-secondary">${news.details}</p>
+                            <p class="card-text text-secondary">${news.details.length > 350 ? news.details.slice(0, 350) + '...' : news.details}</p>
                             <div>
                                 <ul class="d-flex justify-content-between list-unstyled pt-3">
-                                    <li><i class="fas fa-tag me-1"></i>  Category</li>
                                     <li><i class="fa-regular fa-eye me-1"></i>  ${news.total_view}</li>
                                     <li >${news.rating.number} <i class="fa-solid fa-star ms-1"></i></li>
                                     <li class="text-info" role="button"><i class="fa fa-arrow-right"></i>  Continue Reading</li>
@@ -70,3 +99,5 @@ const displayCategoriesNews = newsCard => {
         categoriesContainer.appendChild(createCard);
     });
 }
+
+// displayCategoriesNews('08');
