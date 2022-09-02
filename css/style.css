@@ -9,7 +9,7 @@
 .category-btn {
     border: none;
     outline: none;
-    padding: 10px 16px;
+    padding: 10px 10px;
     background-color: #fff;
     cursor: pointer;
     transition: .5s;
@@ -25,3 +25,9 @@
     color: #17a2b8 !important;
   }
 
+/* Media Query for mobile responsive  */
+#categories-menu{
+  display: flex;
+  flex-wrap: wrap !important;
+
+}
