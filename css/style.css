@@ -12,11 +12,16 @@
     padding: 10px 16px;
     background-color: #fff;
     cursor: pointer;
+    transition: .5s;
   }
   
   /* Style the active class (and buttons on mouse-over) */
   .active, .btn:hover {
     background-color: #17a2b8 !important;
     color: white !important;
+  }
+  .category-btn-active, .category-btn:hover {
+    background-color: #ecfcff !important;
+    color: #17a2b8 !important;
   }
 
