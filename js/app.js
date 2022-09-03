@@ -79,7 +79,7 @@ const displayCategoriesNews = newsCard => {
 
                                 <div class="d-flex align-items-center gap-2">
                                     <img class="rounded-pill" src="${news.author.img}" style="margin-top: -10px; width:40px; height: 40px;" alt="author">
-                                    <p>${news.author.name === null ? news.author.name = 'Name is not found' : news.author.name}</p>
+                                    <p>${news.author.name === null || news.author.name === '' ? news.author.name = 'Name not found' : news.author.name}</p>
                                 </div>
                                 <div>
                                     <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date === null ? 'The date is not found' : news.author.published_date}</p>
@@ -129,7 +129,7 @@ const displayNewsDetails = (newsData) =>{
 
                         <div class="d-flex align-items-center gap-2">
                             <img class="rounded-pill" src="${news.author.img}" style="margin-top: -10px; width:40px; height: 40px;" alt="author">
-                            <p>${news.author.name === null ? news.author.name = 'Name is not found' : news.author.name}</p>
+                            <p>${news.author.name === null || news.author.name === '' ? news.author.name = 'Name not found' : news.author.name}</p>
                         </div>
                         <div>
                             <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date === null ? 'The date is not found' : news.author.published_date}</p>
