@@ -45,14 +45,31 @@
     <main class="py-4">
         <section class="container news-categories">
             <!-- Loading spinner area start here  -->
-            <div id="spinner" class="text-center d-none mb-3">
+            <div id="spinner" class="text-center d-none position-absolute top-20 start-50">
                 <div class="spinner-border text-success" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
             <!-- news items found area  -->
-            <div>
-                <h5 id="items-found" class="bg-white p-3 mb-4 d-none rounded-3"></h5>
+            <div class="mt-1">
+                <h5 id="items-found" class="bg-white p-3 d-none rounded-3"></h5>
+            </div>
+            <!-- Sort by view items  -->
+            <div id="sort-by-view" class="d-none">
+                <div class="d-md-flex justify-content-md-between mb-4">
+                    <div class="d-flex align-items-center justify-content-center gap-3 py-3">
+                        <span>Sort By View:</span>
+                        <select class="form-select border-0" aria-label="Disabled select example">
+                            <option selected>Default</option>
+                            <option value="1">Popular</option>
+                            <option value="2">Latest</option>
+                          </select>
+                    </div>
+                    <div id="nav-menu" class="d-flex align-items-center justify-content-center py-3">
+                        <button type="button" class="btn active px-3 me-2">Today’s Pick</button>
+                        <button type="button" class="btn btn-outline-info bg-white">Trending</button>
+                    </div>
+                </div>
             </div>
             
             <!-- categoris card news  -->

@@ -19,7 +19,7 @@ const displayCategories = async () => {
     categories.forEach(category => {
         const newButton = document.createElement('div');
         newButton.innerHTML = `
-        <button onclick="loadCategoriesNews('${category.category_id}')" class="category-btn text-secondary">${category.category_name}</button>`;
+        <button onclick="loadCategoriesNews('${category.category_id}', '${category.category_name}')" class="category-btn text-secondary">${category.category_name}</button>`;
         categoriesMenuContainer.appendChild(newButton);
     });
 
@@ -42,8 +42,8 @@ const displayCategories = async () => {
 }
 displayCategories();
 
-// Load categories info using category id 
-const loadCategoriesNews = async (category_id) => {
+// Load categories info using category id and show category name on items found on specific category
+const loadCategoriesNews = async (category_id, category_name) => {
     // Toggle Spinner stop loader
     toggleSpinner(true);
 
@@ -51,14 +51,14 @@ const loadCategoriesNews = async (category_id) => {
     try {
         const res = await fetch(url);
         const data = await res.json();
-        displayCategoriesNews(data.data);
+        displayCategoriesNews(data.data, category_name);
     } catch (error) {
         console.log(error);
     }
 }
 
 // display news cards
-const displayCategoriesNews = (newsCard) => {
+const displayCategoriesNews = (newsCard, category_name) => {
 
     // Make the MostViewed news on first using sort method
     newsCard.sort((a, b) => b.total_view - a.total_view);
@@ -104,14 +104,18 @@ const displayCategoriesNews = (newsCard) => {
         categoriesContainer.appendChild(createCard);
     });
 
-    //Set Items found div
+    // get Sort by view div
+    const sortByView = document.getElementById('sort-by-view');
+    //Set Items found div to show the how many items are found
     const itemsFound = document.getElementById('items-found');
     if (newsCard.length > 0) {
         itemsFound.classList.remove('d-none')
-        itemsFound.innerText = `${newsCard.length} news found in this category`;
+        sortByView.classList.remove('d-none');
+        itemsFound.innerText = `${newsCard.length} news found for category ${category_name === undefined ? 'Breaking News' : category_name}`;
     } else {
         itemsFound.classList.remove('d-none')
-        itemsFound.innerText = `Oops! No news found in this category`;
+        sortByView.classList.add('d-none');
+        itemsFound.innerText = `Oops! No news found for category ${category_name}`;
     }
 
     // Toggle Spinner stop loader

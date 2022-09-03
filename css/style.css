@@ -30,11 +30,11 @@
   main{
     min-height: 80vh;
   }
+  .form-select{
+    width: 150px !important;
+    color: #adadad !important;
+  }
   
-.img-popup{
-  width: 300px !important;
-  object-fit:contain;
-}
 /* Style accordion active collapsed  */
 .accordion-button:not(.collapsed) {
   color: #17a2b8 !important;
