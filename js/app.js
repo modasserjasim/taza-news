@@ -17,7 +17,7 @@ const displayCategories = async () => {
         categoriesMenuContainer.appendChild(newButton);
     });
 
-    // Get all buttons with class="btn" inside the container to active the button
+    // Get all buttons inside the container to active the button
     var btns = categoriesMenuContainer.getElementsByClassName("category-btn");
 
     // Loop through the buttons and add the active class to the current/clicked button
@@ -80,16 +80,16 @@ const displayCategoriesNews = newsCard => {
 
                                 <div class="d-flex align-items-center gap-2">
                                     <img class="rounded-pill" src="${news.author.img}" style="margin-top: -10px; width:40px; height: 40px;" alt="author">
-                                    <p>${news.author.name}</p>
+                                    <p>${news.author.name === null ? news.author.name = 'Name is not found' : news.author.name}</p>
                                 </div>
                                 <div>
-                                    <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date}</p>
+                                    <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date === null ? 'The date is not found' : news.author.published_date}</p>
                                 </div>
                             </div>
                             <p class="card-text text-secondary">${news.details.length > 350 ? news.details.slice(0, 350) + '...' : news.details}</p>
                             <div>
                                 <ul class="d-flex justify-content-between list-unstyled pt-3">
-                                    <li><i class="fa-regular fa-eye me-1"></i>  ${news.total_view}</li>
+                                    <li><i class="fa-regular fa-eye me-1"></i>  ${news.total_view === null ? news.total_view = 'The view is not found' : news.total_view}</li>
                                     <li >${news.rating.number} <i class="fa-solid fa-star ms-1"></i></li>
                                     <li class="text-info" role="button"><i class="fa fa-arrow-right"></i>  Continue Reading</li>
                                 </ul>

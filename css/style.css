@@ -26,6 +26,10 @@
     color: #17a2b8 !important;
   }
 
+  .news-categories{
+    min-height: 600px;
+  }
+
 /* Media Query for mobile responsive  */
 #categories-menu{
   display: flex;
