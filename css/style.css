@@ -30,15 +30,21 @@
   main{
     min-height: 80vh;
   }
-
-/* Media Query for mobile responsive  */
-#categories-menu{
-  display: flex;
-  flex-wrap: wrap !important;
-
-}
+  
 .img-popup{
   width: 300px !important;
-  height: 300 !important;
   object-fit:contain;
+}
+/* Style accordion active collapsed  */
+.accordion-button:not(.collapsed) {
+  color: #17a2b8 !important;
+  background-color: #ecfdff !important;
+  box-shadow: none !important;
+}
+
+/* Media Query for mobile responsive  */
+@media only screen and (max-width: 576px) {
+  .avatar{
+    display: none;
+  }
 }
