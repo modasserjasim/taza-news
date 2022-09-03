@@ -136,7 +136,7 @@ const displayNewsDetails = (news) => {
         <div class="card border-0">
         <div class="row p-3 d-flex align-items-center">
             <div class="col-md-12 text-center">
-                <img src="${news.thumbnail_url}" class="card-img img-popup" alt="News Image">
+                <img src="${news.image_url}" class="card-img" alt="News Image">
             </div>
             <div class="col-md-12">
                 <div class="card-body">
@@ -156,6 +156,7 @@ const displayNewsDetails = (news) => {
                         <ul class="d-flex justify-content-between flex-wrap list-unstyled pt-3">
                             <li><i class="fa-regular fa-eye me-1"></i>  ${news.total_view === null ? news.total_view = 'The view is not found' : news.total_view}</li>
                             <li >${news.rating.number} <i class="fa-solid fa-star ms-1"></i></li>
+                            <li > <i class="fa fa-arrow-trend-up"></i> IsTrending: ${news.others_info.is_trending === true ? 'Yes' : 'No'}</li>
                         </ul>
                     </div>
                 </div>
