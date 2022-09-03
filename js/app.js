@@ -49,7 +49,6 @@ const loadCategoriesNews = async (category_id) => {
 
 const displayCategoriesNews = newsCard => {
     // console.log(newsCard);
-    
 
     //items found
     const itemsFound = document.getElementById('items-found');
@@ -65,10 +64,10 @@ const displayCategoriesNews = newsCard => {
     const categoriesContainer = document.getElementById('categories-container');
     categoriesContainer.innerHTML = '';
     newsCard.forEach(news => {
-        // console.log(news);
+        console.log(news);
         const createCard = document.createElement('div');
         createCard.innerHTML = `
-            <div class="card shadow-sm border-0 rounded-4 mb-4">
+            <div onclick="loadNewsDetails(${news._id})" class="card shadow-sm border-0 rounded-4 mb-4" role="button" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">
                 <div class="row p-3 d-flex align-items-center">
                     <div class="col-md-3">
                         <img src="${news.thumbnail_url}" class="card-img" alt="...">
@@ -106,6 +105,10 @@ const displayCategoriesNews = newsCard => {
     toggleSpinner(false);
 }
 
+const loadNewsDetails = async(news_id) =>{
+
+}
+
 const toggleSpinner = isLoading =>{
     const spinnerSection = document.getElementById('spinner');
     if(isLoading){
@@ -114,3 +117,5 @@ const toggleSpinner = isLoading =>{
         spinnerSection.classList.add('d-none');
     }
 }
+
+loadCategoriesNews('01')
