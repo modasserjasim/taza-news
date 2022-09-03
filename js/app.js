@@ -64,10 +64,10 @@ const displayCategoriesNews = newsCard => {
     const categoriesContainer = document.getElementById('categories-container');
     categoriesContainer.innerHTML = '';
     newsCard.forEach(news => {
-        console.log(news);
+        // console.log(news);
         const createCard = document.createElement('div');
         createCard.innerHTML = `
-            <div onclick="loadNewsDetails(${news._id})" class="card shadow-sm border-0 rounded-4 mb-4" role="button" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">
+            <div onclick="loadNewsDetails('${news._id}')" class="card shadow-sm border-0 rounded-4 mb-4" role="button" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">
                 <div class="row p-3 d-flex align-items-center">
                     <div class="col-md-3">
                         <img src="${news.thumbnail_url}" class="card-img" alt="...">
@@ -106,7 +106,49 @@ const displayCategoriesNews = newsCard => {
 }
 
 const loadNewsDetails = async(news_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    console.log(url);
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data);
+}
+const displayNewsDetails = (newsData) =>{
+    console.log(newsData);
+    const newsPopoupBody = document.getElementById('modal-body');
+    newsData.forEach(news => {
+        newsPopoupBody.innerHTML = `
+        <div class="card border-0">
+        <div class="row p-3 d-flex align-items-center">
+            <div class="col-md-12 text-center">
+                <img src="${news.thumbnail_url}" class="card-img img-popup" alt="News Image">
+            </div>
+            <div class="col-md-12">
+                <div class="card-body">
+                    <h4 class="card-title">${news.title}</h4>
+                    <div class="d-flex align-items-center gap-3 py-3">
 
+                        <div class="d-flex align-items-center gap-2">
+                            <img class="rounded-pill" src="${news.author.img}" style="margin-top: -10px; width:40px; height: 40px;" alt="author">
+                            <p>${news.author.name === null ? news.author.name = 'Name is not found' : news.author.name}</p>
+                        </div>
+                        <div>
+                            <p class=""><i class="fa-sharp fa-solid fa-calendar-days me-1"></i> ${news.author.published_date === null ? 'The date is not found' : news.author.published_date}</p>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary">${news.details}</p>
+                    <div>
+                        <ul class="d-flex justify-content-between list-unstyled pt-3">
+                            <li><i class="fa-regular fa-eye me-1"></i>  ${news.total_view === null ? news.total_view = 'The view is not found' : news.total_view}</li>
+                            <li >${news.rating.number} <i class="fa-solid fa-star ms-1"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        `
+    });
 }
 
 const toggleSpinner = isLoading =>{

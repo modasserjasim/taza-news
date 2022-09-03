@@ -37,3 +37,8 @@
   flex-wrap: wrap !important;
 
 }
+.img-popup{
+  width: 300px !important;
+  height: 300 !important;
+  object-fit:contain;
+}
